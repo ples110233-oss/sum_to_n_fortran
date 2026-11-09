@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作業成果匯報</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f7f9fa;
+        }
+        header {
+            background: linear-gradient(135deg, #1f4068, #162447);
+            color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        header h1 { margin: 0; font-size: 2rem; }
+        header p { margin: 10px 0 0 0; opacity: 0.8; }
+        .card {
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+        }
+        h2 { color: #1f4068; border-left: 5px solid #e43f5a; padding-left: 10px; margin-top: 0; }
+        pre {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Consolas', monospace;
+            font-size: 0.95rem;
+        }
+        .score-system {
+            background: #edf2f7;
+            border: 2px solid #cbd5e0;
+        }
+        .checkbox-group {
+            margin: 15px 0;
+        }
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+        .checkbox-item input {
+            width: 20px;
+            height: 20px;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+        .total-score {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #e43f5a;
+            text-align: right;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 2px dashed #cbd5e0;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <!-- ⚠️ 請將下方的 姓名、學號 換成你自己的真實資料 ⚠️ -->
+        <h1 id="page-title">姓名：賴佑豪、學號：414210798、得分數：0分</h1>
+        <p>Fortran 程式設計與 Git/GitHub 版本控制作業成果</p>
+    </header>
+
+    <!-- 第五題：任務達成評分系統 -->
+    <div class="card score-system">
+        <h2>五、 任務達成評分系統 (20分)</h2>
+        <p>請勾選已完成的作業項目，系統將自動即時計算總分：</p>
+        <div class="checkbox-group">
+            <label class="checkbox-item">
+                <input type="checkbox" class="task-chkbx" data-score="20" onchange="calculateScore()"> 
+                第一題：指揮 AI 輸出 Fortran 程式（加到 N 的總和） — 20分
+            </label>
+            <label class="checkbox-item">
+                <input type="checkbox" class="task-chkbx" data-score="20" onchange="calculateScore()"> 
+                第二題：進行三次隨機驗證與正確性核對 — 20分
+            </label>
+            <label class="checkbox-item">
+                <input type="checkbox" class="task-chkbx" data-score="20" onchange="calculateScore()"> 
+                第三題：Git 版本控制（原版與逐行中文註解版兩次認錄） — 20分
+            </label>
+            <label class="checkbox-item">
+                <input type="checkbox" class="task-chkbx" data-score="20" onchange="calculateScore()"> 
+                第四題：成功將程式碼推送到 GitHub 雲端儲存庫 — 20分
+            </label>
+            <label class="checkbox-item">
+                <input type="checkbox" class="task-chkbx" data-score="20" onchange="calculateScore()"> 
+                第五題：製作單一成果網頁並整合評分系統 — 20分
+            </label>
+        </div>
+        <div class="total-score" id="score-display">目前總分：0 分</div>
+    </div>
+
+    <!-- 第一題 & 第三題成果展示 -->
+    <div class="card">
+        <h2>一 & 三、 Fortran 原始碼（含逐行中文註解）</h2>
+        <pre><code>!====================================================
+! 程式名稱: sum_to_n.f90
+! 功能描述: 讓使用者輸入整數 N，計算從 1 加到 N 的總和
+!====================================================
+program sum_to_n
+    implicit none
+    integer :: n, i, total_sum  ! 宣告變數：n為輸入上限，i為計數器，total_sum為總和
+
+    ! 提示使用者輸入
+    print *, "請輸入一個正整數 N:"
+    read *, n
+
+    ! 初始化總和為 0
+    total_sum = 0
+
+    ! 使用迴圈從 1 累加到 N
+    do i = 1, n
+        total_sum = total_sum + i
+    end do
+
+    ! 輸出最終計算結果
+    print *, "從 1 加到 ", n, " 的總和為: ", total_sum
+
+end program sum_to_n</code></pre>
+    </div>
+
+    <!-- 第二題成果展示 -->
+    <div class="card">
+        <h2>二、 三次隨機驗證結果</h2>
+        <ul>
+            <li><strong>測試案例 1：</strong> 輸入 <code style="background:#eee; padding:2px 6px; border-radius:4px;">N = 5</code> &rarr; 預期結果 = 15 &rarr; <strong>驗證成功</strong></li>
+            <li><strong>測試案例 2：</strong> 輸入 <code style="background:#eee; padding:2px 6px; border-radius:4px;">N = 100</code> &rarr; 預期結果 = 5050 &rarr; <strong>驗證成功</strong></li>
+            <li><strong>測試案例 3：</strong> 輸入 <code style="background:#eee; padding:2px 6px; border-radius:4px;">N = 1000</code> &rarr; 預期結果 = 500500 &rarr; <strong>驗證成功</strong></li>
+        </ul>
+    </div>
+
+    <!-- 第四題成果展示 -->
+    <div class="card">
+        <h2>四、 GitHub 儲存庫連結</h2>
+        <p>本專案的完整 Git 修改歷史紀錄已成功同步至 GitHub 雲端儲存庫：</p>
+        <p>&darr; 點擊下方連結前往查看原始碼與 Commit 紀錄：</p>
+        <a href="https://github.com" target="_blank" style="display:inline-block; background:#162447; color:#fff; padding:10px 20px; border-radius:6px; text-decoration:none; font-weight:bold;">訪問我的 GitHub 專案庫</a>
+    </div>
+
+    <script>
+        function calculateScore() {
+            const checkboxes = document.querySelectorAll('.task-chkbx');
+            let total = 0;
+            checkboxes.forEach(cb => {
+                if (cb.checked) {
+                    total += parseInt(cb.getAttribute('data-score'));
+                }
+            });
+            
+            // 更新總和顯示
+            document.getElementById('score-display').innerText = `目前總分：${total} 分`;
+            
+            // ⚠️ 請修改下方的姓名與學號，保持跟 header 一致 ⚠️
+            const name = "賴佑豪"; 
+            const studentId = "414210798";
+            document.getElementById('page-title').innerText = `姓名：${name}、學號：${studentId}、得分數：${total}分`;
+        }
+    </script>
+</body>
+</html>
